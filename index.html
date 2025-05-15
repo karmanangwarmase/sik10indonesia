@@ -1,108 +1,255 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Materi Sejarah: Asal Usul dan Perkembangan Awal Manusia Indonesia</title>
     <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2c3e50;
+            --background-color: #f4f4f9;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
         }
 
         header {
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: white;
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         main {
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         h1, h2 {
-            color: #2c3e50;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
         }
 
         ul, p {
             margin-bottom: 1rem;
+            margin-top: 0;
         }
 
         ul {
-            padding-left: 1.2rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
         }
 
         .card {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: var(--card-color);
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
 
         table, th, td {
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
         }
 
         th, td {
-            padding: 0.75rem;
+            padding: 0.8rem;
             text-align: left;
+            vertical-align: top;
         }
 
         th {
-            background-color: #e0e0e0;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
         }
 
-        @media (max-width: 600px) {
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        strong {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Table Styles */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem 0;
+            border-radius: 8px;
+            background: linear-gradient(to right, white, white),
+                        linear-gradient(to right, white, white),
+                        linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0)),
+                        linear-gradient(to left, rgba(0,0,0,0.1), rgba(0,0,0,0));
+            background-position: left center, right center, left center, right center;
+            background-repeat: no-repeat;
+            background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+            background-attachment: local, local, scroll, scroll;
+        }
+
+        /* Arrow indicators for scrollable tables */
+        .table-container::before,
+        .table-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .table-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .table-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .table-container.scroll-start::after,
+        .table-container.scroll-middle::before,
+        .table-container.scroll-middle::after,
+        .table-container.scroll-end::before {
+            opacity: 1;
+        }
+
+        /* Improved mobile styles */
+        @media (max-width: 768px) {
             body {
-                font-size: 16px;
+                font-size: 15px;
             }
+            
+            header {
+                padding: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            th, td {
+                padding: 0.6rem;
+                min-width: 120px;
+            }
+            
+            main {
+                padding: 0.8rem;
+                gap: 1rem;
+            }
+        }
 
-            table, thead, tbody, th, td, tr {
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Stacked table layout for very small screens */
+            .stacked-table {
+                width: 100%;
+            }
+            
+            .stacked-table thead {
+                display: none;
+            }
+            
+            .stacked-table tr {
                 display: block;
+                margin-bottom: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                overflow: hidden;
             }
-
-            th {
-                background-color: #4CAF50;
-                color: white;
-            }
-
-            td {
+            
+            .stacked-table td {
+                display: flex;
                 border: none;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid var(--border-color);
+                padding: 0.8rem;
                 position: relative;
-                padding-left: 50%;
+                padding-left: 40%;
             }
-
-            td::before {
+            
+            .stacked-table td:last-child {
+                border-bottom: none;
+            }
+            
+            .stacked-table td::before {
+                content: attr(data-label);
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 45%;
-                padding-left: 0.5rem;
+                left: 0.8rem;
+                top: 0.8rem;
+                width: 35%;
                 font-weight: bold;
-                white-space: nowrap;
+                color: var(--secondary-color);
             }
-
-            tr td:nth-child(1)::before { content: "Zaman"; }
-            tr td:nth-child(2)::before { content: "Ciri Utama"; }
-            tr td:nth-child(3)::before { content: "Alat"; }
-            tr td:nth-child(4)::before { content: "Pola Hidup"; }
         }
     </style>
 </head>
@@ -152,38 +299,44 @@
         
         <div class="card">
             <h2>5. Pembagian Zaman Batu</h2>
-            <table>
-                <tr>
-                    <th>Zaman</th>
-                    <th>Ciri Utama</th>
-                    <th>Alat</th>
-                    <th>Pola Hidup</th>
-                </tr>
-                <tr>
-                    <td>Paleolitikum</td>
-                    <td>Alat kasar</td>
-                    <td>Kapak genggam</td>
-                    <td>Nomaden, berburu</td>
-                </tr>
-                <tr>
-                    <td>Mesolitikum</td>
-                    <td>Alat lebih halus</td>
-                    <td>Flakes, pebble</td>
-                    <td>Setengah menetap</td>
-                </tr>
-                <tr>
-                    <td>Neolitikum</td>
-                    <td>Alat diasah</td>
-                    <td>Kapak persegi/lonjong</td>
-                    <td>Bercocok tanam</td>
-                </tr>
-                <tr>
-                    <td>Megalitikum</td>
-                    <td>Bangunan batu besar</td>
-                    <td>Menhir, dolmen</td>
-                    <td>Kepercayaan roh leluhur</td>
-                </tr>
-            </table>
+            <div class="table-container">
+                <table class="stacked-table">
+                    <thead>
+                        <tr>
+                            <th>Zaman</th>
+                            <th>Ciri Utama</th>
+                            <th>Alat</th>
+                            <th>Pola Hidup</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Zaman">Paleolitikum</td>
+                            <td data-label="Ciri Utama">Alat kasar</td>
+                            <td data-label="Alat">Kapak genggam</td>
+                            <td data-label="Pola Hidup">Nomaden, berburu</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Zaman">Mesolitikum</td>
+                            <td data-label="Ciri Utama">Alat lebih halus</td>
+                            <td data-label="Alat">Flakes, pebble</td>
+                            <td data-label="Pola Hidup">Setengah menetap</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Zaman">Neolitikum</td>
+                            <td data-label="Ciri Utama">Alat diasah</td>
+                            <td data-label="Alat">Kapak persegi/lonjong</td>
+                            <td data-label="Pola Hidup">Bercocok tanam</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Zaman">Megalitikum</td>
+                            <td data-label="Ciri Utama">Bangunan batu besar</td>
+                            <td data-label="Alat">Menhir, dolmen</td>
+                            <td data-label="Pola Hidup">Kepercayaan roh leluhur</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <div class="card">
@@ -215,28 +368,34 @@
         
         <div class="card">
             <h2>9. Pithecanthropus vs Homo</h2>
-            <table>
-                <tr>
-                    <th>Aspek</th>
-                    <th>Pithecanthropus</th>
-                    <th>Homo</th>
-                </tr>
-                <tr>
-                    <td>Fisik</td>
-                    <td>Lebih primitif</td>
-                    <td>Lebih modern</td>
-                </tr>
-                <tr>
-                    <td>Otak</td>
-                    <td>Lebih kecil</td>
-                    <td>Lebih besar</td>
-                </tr>
-                <tr>
-                    <td>Budaya</td>
-                    <td>Alat sederhana</td>
-                    <td>Alat lebih kompleks, mulai berpikir simbolik</td>
-                </tr>
-            </table>
+            <div class="table-container">
+                <table class="stacked-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Pithecanthropus</th>
+                            <th>Homo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Aspek">Fisik</td>
+                            <td data-label="Pithecanthropus">Lebih primitif</td>
+                            <td data-label="Homo">Lebih modern</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Aspek">Otak</td>
+                            <td data-label="Pithecanthropus">Lebih kecil</td>
+                            <td data-label="Homo">Lebih besar</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Aspek">Budaya</td>
+                            <td data-label="Pithecanthropus">Alat sederhana</td>
+                            <td data-label="Homo">Alat lebih kompleks, mulai berpikir simbolik</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <div class="card">
@@ -252,5 +411,45 @@
             </ul>
         </div>
     </main>
+
+    <script>
+        // Script untuk menangani scroll pada tabel di mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableContainers = document.querySelectorAll('.table-container');
+            
+            function checkScroll() {
+                tableContainers.forEach(container => {
+                    const scrollLeft = container.scrollLeft;
+                    const scrollWidth = container.scrollWidth;
+                    const clientWidth = container.clientWidth;
+                    
+                    // Reset all classes first
+                    container.classList.remove('scroll-start', 'scroll-middle', 'scroll-end');
+                    
+                    if (scrollLeft === 0) {
+                        // At start
+                        container.classList.add('scroll-start');
+                    } else if (scrollLeft + clientWidth >= scrollWidth) {
+                        // At end
+                        container.classList.add('scroll-end');
+                    } else {
+                        // In middle
+                        container.classList.add('scroll-middle');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkScroll();
+            
+            // Add event listeners
+            tableContainers.forEach(container => {
+                container.addEventListener('scroll', checkScroll);
+            });
+            
+            // Also check on resize
+            window.addEventListener('resize', checkScroll);
+        });
+    </script>
 </body>
 </html>
